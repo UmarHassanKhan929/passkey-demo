@@ -5,13 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start:json": "node index.js",
+    "start:db": "node index-withdb.js",
+    "dev": "nodemon index-withdb.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@simplewebauthn/server": "^10.0.1",
     "cors": "^2.8.5",
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

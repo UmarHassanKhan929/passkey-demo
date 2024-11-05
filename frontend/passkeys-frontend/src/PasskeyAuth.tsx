@@ -42,7 +42,7 @@ const PasskeyAuth = () => {
   const handleLogin = async () => {
     try {
       // Get authentication options from server
-      const optionsRes = await fetch(`${BACKEND_URL}/login`, {
+      const optionsRes = await fetch(`${BACKEND_URL}/authenticate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username }),
@@ -53,7 +53,7 @@ const PasskeyAuth = () => {
       const authResult = await startAuthentication(options);
 
       // Send the result to the server for verification
-      const verificationRes = await fetch(`${BACKEND_URL}/login/verify`, {
+      const verificationRes = await fetch(`${BACKEND_URL}/authenticate/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, response: authResult }),
@@ -63,11 +63,11 @@ const PasskeyAuth = () => {
       if (verificationResult.verified) {
         setMessage('Authentication successful!');
       } else {
-        setMessage('Authentication failed. Please try again.');
+        setMessage(verificationResult.message || 'Authentication failed. Please try again.');
       }
     } catch (error) {
-      console.error(error);
-      setMessage('An error occurred during authentication.');
+      console.log(error);
+      setMessage(error.message || 'An error occurred during authentication.');
     }
   };
 

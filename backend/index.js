@@ -13,7 +13,7 @@ app.use(cors());
 
 const rpName = "Your Company Name";
 const rpID = "localhost";
-const origin = `http://${rpID}:5176`;
+const origin = `http://${rpID}:5173`;
 
 // In-memory storage
 const users = {};
